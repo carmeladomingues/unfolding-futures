@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>(Un)folding Futures</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="(Un)folding Futures. Senses &amp; Sensibility 2027 international design conference. Lisbon, Portugal.">
+<style>
+@font-face{font-family:"Sligoil Micro";src:url(../assets/Micro.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Sligoil Micro";src:url(../assets/MicroMedium.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Sligoil Micro";src:url(../assets/MicroBold.woff2) format("woff2");font-weight:700;font-display:swap}
+
+/* Layout: pink ground from the proceedings cover. Giant uppercase title band, then a split: sticky ampersand panel that turns as you scroll, content panels that unfold on the right. */
+:root{
+  --magenta:#EC008C; --pink:#F02FA2; --pink-soft:#F9C6E4; --green:#6EC83A; --green-soft:#A6DD7E;
+  --paper:#F4FBEF; --ink:#231F20;
+  --mono:"Sligoil Micro", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --side:max(16px,env(safe-area-inset-left,0px));
+  --sider:max(16px,env(safe-area-inset-right,0px));
+  --p:0;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--pink-soft);color:var(--ink);font-family:var(--mono);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;
+  padding-block:14px;padding-left:max(clamp(16px,3vw,40px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,3vw,40px),env(safe-area-inset-right,0px));
+  background:var(--ink);color:var(--paper);font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.07em}
+.bar nav{display:flex;flex-wrap:wrap;gap:4px 22px}
+.bar nav a{text-decoration:none;opacity:.85}
+.bar nav a:hover{opacity:1;color:var(--pink)}
+.progress{position:absolute;left:0;bottom:0;height:3px;width:calc(var(--p)*100%);background:var(--pink)}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;background:var(--pink);color:var(--ink);text-decoration:none;font:700 13px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;transition:background .2s,color .2s}
+.cta:hover{background:var(--green)}
+.cta.ink{background:var(--ink);color:var(--paper)}
+.cta.ink:hover{background:var(--green);color:var(--ink)}
+
+/* giant title band */
+.mast{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--magenta),var(--pink) 30%,var(--pink-soft) 60%,var(--pink) 85%);background-size:100% 260%;animation:pinks 11s ease-in-out infinite alternate;
+  padding-block:clamp(28px,5vw,64px) clamp(20px,3vw,40px);padding-left:max(clamp(16px,3vw,40px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,3vw,40px),env(safe-area-inset-right,0px))}
+@keyframes pinks{to{background-position:0 100%}}
+@keyframes greens{to{background-position:100% 0}}
+@keyframes orbgrad{to{background-position:100% 100%}}
+.mast-meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding-block:10px;font-weight:700;font-size:clamp(14px,1.4vw,18px);text-transform:uppercase;letter-spacing:.04em}
+.giant{margin:clamp(16px,2vw,28px) 0;font-weight:700;font-size:clamp(54px,13.2vw,220px);line-height:.86;letter-spacing:-.035em;display:flex;flex-wrap:wrap;column-gap:.18em}
+.giant .w{display:inline-flex;overflow:hidden;padding-bottom:.2em;margin-bottom:-.2em}
+.giant .w>span{display:inline-block;animation:drop .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*90ms)}
+@keyframes drop{from{transform:translateY(-110%) rotate(-6deg)}to{transform:none}}
+.giant .w{transition:transform .1s linear}
+.giant .w:nth-child(1){transform:translateX(calc(var(--q,0)*7vw))}
+.giant .w:nth-child(2){transform:translateX(calc(var(--q,0)*-3vw))}
+.giant .w:nth-child(3){transform:translateX(calc(var(--q,0)*10vw))}
+.mast-sub{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px}
+.mast-sub p{margin:0;font-size:clamp(20px,2.4vw,34px);line-height:1.1;max-width:22ch}
+
+/* split */
+.split{display:flex;flex-wrap:wrap;align-items:flex-start}
+.stage{flex:1 1 420px;position:sticky;top:60px;height:calc(100vh - 60px);min-height:520px;overflow:hidden;background:linear-gradient(90deg,var(--green),var(--green-soft) 35%,#EAF7E0 60%,var(--green-soft) 85%,var(--green));background-size:220% 100%;animation:greens 13s ease-in-out infinite alternate}
+.stage .orb{position:absolute;left:50%;top:50%;width:85%;aspect-ratio:1;border-radius:50%;background:linear-gradient(135deg,#F2FBEA 0,#B8E69A 30%,#5DBB2C 65%,#2F8A12 100%);background-size:180% 180%;filter:blur(6px);animation:orbgrad 8s ease-in-out infinite alternate;
+  
+  transform:translate(calc(-50% + var(--p)*30%),calc(-50% - var(--p)*20%)) scale(calc(1 + var(--p)*.25))}
+.stage img{position:absolute;left:50%;top:50%;height:82%;width:auto;max-width:none;transform:translate(-50%,-50%)}
+.stage-cap{position:absolute;left:24px;right:24px;bottom:20px;display:flex;justify-content:space-between;gap:12px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;border-top:2px solid var(--ink);padding-top:10px;font-variant-numeric:tabular-nums}
+.corner{position:absolute;top:0;right:0;width:38%;aspect-ratio:2/1;background:linear-gradient(200deg,#fff 10%,var(--green-soft));clip-path:polygon(0 0,100% 0,100% 45%,30% 100%);
+  transform-origin:100% 0;transform:scale(calc(.6 + var(--p)*.6))}
+
+.flow{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:clamp(14px,1.6vw,22px);
+  padding-block:clamp(14px,1.6vw,22px) clamp(40px,5vw,80px);padding-left:max(clamp(14px,1.6vw,22px),env(safe-area-inset-left,0px));padding-right:max(clamp(14px,1.6vw,22px),env(safe-area-inset-right,0px));perspective:1400px}
+
+.panel{background:var(--paper);padding:clamp(22px,3vw,44px);display:flex;flex-direction:column;gap:22px;transform-origin:50% 0;
+  animation:unfold linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+@keyframes unfold{from{transform:rotateX(-28deg) translateY(30px);opacity:.55}to{transform:none;opacity:1}}
+.tag{align-self:flex-start;display:inline-flex;gap:10px;align-items:center;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.1em;padding:6px 10px;background:var(--ink);color:var(--paper)}
+.panel p{margin:0}
+.lead{font-size:clamp(20px,2vw,28px);line-height:1.32}
+h2{margin:0;font-weight:700;text-transform:uppercase;font-size:clamp(36px,4.6vw,72px);line-height:.92;letter-spacing:-.02em;text-wrap:balance}
+
+/* keynote photo */
+.badge-wrap{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-end}
+.badge-in{flex:0 1 340px;max-width:100%;position:relative;aspect-ratio:525/630;overflow:hidden;color:var(--ink);padding:5% 4%;
+  background:radial-gradient(70% 45% at 85% 35%,#A9D58C 0,transparent 70%),radial-gradient(60% 40% at 5% 95%,#8CC46A 0,transparent 70%),radial-gradient(50% 35% at 100% 90%,#A9D58C 0,transparent 70%),linear-gradient(170deg,#FBFDF8,#EAF4E2 50%,#F7FBF3);
+  background-size:160% 160%;animation:greens3 9s ease-in-out infinite alternate}
+@keyframes greens3{to{background-position:100% 100%}}
+.badge-in .blob{position:absolute;top:-14%;left:16%;width:56%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 40%,transparent 0 22%,#D0558E 23% 58%,transparent 59%);mask:linear-gradient(#000 60%,transparent);animation:drift 8s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(6%,4%)}}
+.badge-in .tri{position:absolute;top:2%;right:0;width:55%;height:22%;background:linear-gradient(200deg,#C8E3B4,transparent);clip-path:polygon(0 0,100% 50%,30% 70%);animation:drift 10s ease-in-out infinite alternate-reverse}
+.badge-in strong{position:relative;z-index:2;font-weight:500;font-size:clamp(40px,4.2vw,64px);line-height:.98;text-transform:uppercase;display:block;letter-spacing:-.01em}
+.badge-in .ph{position:absolute;right:4%;bottom:4%;width:75%;aspect-ratio:1;border-radius:50%;overflow:hidden;display:grid;place-items:center;color:#D0558E;
+  background:radial-gradient(circle at 35% 30%,#FBE3EF,#F1CDE0 45%,#E9A9C9);background-size:180% 180%;animation:zoom 7s ease-in-out infinite alternate,pinkpos 9s ease-in-out infinite alternate}
+@keyframes zoom{from{transform:scale(.94)}to{transform:scale(1.04)}}
+@keyframes pinkpos{to{background-position:100% 100%}}
+.badge-in .ph .icon{width:56%;height:auto;margin-top:12%;animation:zoomin 7s ease-in-out infinite alternate}
+@keyframes zoomin{from{transform:scale(1)}to{transform:scale(1.18) translateY(4%)}}
+.kn-info{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:12px;justify-content:flex-end}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--ink);border:2px solid var(--ink)}
+.cell{background:var(--paper);padding:16px;display:flex;flex-direction:column;gap:4px;transition:background .25s}
+.cell:hover{background:var(--pink)}
+.cell small{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+
+.dl{display:flex;flex-direction:column}
+.dl div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 20px;padding-block:14px;border-bottom:1px solid var(--ink);font-size:clamp(17px,1.6vw,22px);font-variant-numeric:tabular-nums}
+.dl div:first-child{border-top:2px solid var(--ink)}
+.dl .hl{background:var(--pink);padding-inline:12px;font-weight:700;border-bottom:0}
+
+.panel.pink{background:var(--pink)}
+.panel.ink{background:var(--ink);color:var(--paper)}
+.panel.ink .tag{background:var(--pink);color:var(--ink)}
+.welcome{white-space:nowrap;font-weight:700;text-transform:uppercase;font-size:clamp(34px,5vw,92px);line-height:.86;letter-spacing:-.03em;margin:0}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+
+footer{background:var(--paper);border-top:2px solid var(--ink);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;font-size:14px;
+  padding-block:32px 40px;padding-left:max(clamp(16px,3vw,40px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,3vw,40px),env(safe-area-inset-right,0px))}
+footer img{width:clamp(240px,30vw,420px);max-width:100%;height:auto;display:block}
+
+@media (max-width:900px){
+  .stage{position:relative;top:auto;height:auto;min-height:0;aspect-ratio:1/1;flex-basis:100%}
+  .bar nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .giant .w{transform:none!important}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .stage img{position:absolute;left:50%;top:50%;height:82%;width:auto;max-width:none;transform:translate(-50%,-50%)}
+}
+</style>
+</head>
+<body>
+
+
+<header class="bar">
+  <span style="font-weight:700;text-transform:none">(Un)folding Futures</span>
+  <nav aria-label="Main"><a href="#about">About</a><a href="#keynote">Keynote</a><a href="#call">Call for papers</a><a href="#dates">Dates</a><a href="#venue">Venue</a></nav>
+  <a class="cta" href="#register">Register</a>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<section class="mast" id="top">
+  <div class="mast-meta"><span>Senses &amp; Sensibility 2027</span><span>International design conference</span><span>Lisbon*Portugal</span></div>
+  <h1 class="giant" aria-label="(Un)folding Futures">
+    <span class="w" aria-hidden="true"><span style="--i:0">(Un)</span></span>
+    <span class="w" aria-hidden="true"><span style="--i:1">folding</span></span>
+    <span class="w" aria-hidden="true"><span style="--i:2">Futures</span></span>
+  </h1>
+  <div class="mast-sub">
+    <p>Dates TBD<br>Venue TBD, Lisbon</p>
+    <div class="row"><a class="cta ink" href="#call">Submit a paper</a><a class="cta ink" href="#register">Register</a></div>
+  </div>
+</section>
+
+<div class="split">
+  <aside class="stage" aria-hidden="true">
+    <div class="orb"></div>
+    <div class="corner"></div>
+    <img src="../assets/amp.svg" alt="">
+    <div class="stage-cap"><span>Senses &amp; Sensibility</span><span id="pct">00%</span></div>
+  </aside>
+
+  <main class="flow">
+    <article class="panel" id="about">
+      <span class="tag">About</span>
+      <p class="lead">We bring together researchers, educators, practitioners, artists, innovators, and doctoral students to present original research, exchange perspectives, and explore emerging challenges that shape contemporary societies. Research and technological innovation can contribute to more equitable, sustainable, inclusive, and meaningful futures.</p>
+    </article>
+
+    <article class="panel" id="keynote">
+      <span class="tag">Keynote speaker</span>
+      <div class="badge-wrap">
+        <div class="badge-in">
+          <div class="blob" aria-hidden="true"></div><div class="tri" aria-hidden="true"></div>
+          <strong>Key-<br>note<br>spea<br>ker</strong>
+          <div class="ph"><svg class="icon" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="42" r="22" fill="currentColor"/><path d="M18 108c0-23 19-40 42-40s42 17 42 40z" fill="currentColor"/></svg></div>
+        </div>
+        <div class="kn-info">
+          <h2>Speaker TBD</h2>
+          <p>Affiliation TBD</p>
+          <p>Bio TBD</p>
+          <p style="font-weight:700">Talk: TBD</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="panel" id="call">
+      <span class="tag">Call for papers</span>
+      <h2>Submission formats TBD</h2>
+      <div class="grid2">
+        <div class="cell"><small>Track 1</small><span>TBD</span></div>
+        <div class="cell"><small>Track 2</small><span>TBD</span></div>
+        <div class="cell"><small>Track 3</small><span>TBD</span></div>
+        <div class="cell"><small>Track 4</small><span>TBD</span></div>
+      </div>
+      <p>Accepted papers will be published in the conference book of proceedings.</p>
+      <div class="row"><a class="cta ink" href="#">Submit a paper</a><a class="cta" href="#">Author guidelines</a></div>
+    </article>
+
+    <article class="panel" id="dates">
+      <span class="tag">Important dates</span>
+      <div class="dl">
+        <div><span>Abstract submission</span><b>TBD</b></div>
+        <div><span>Notification of acceptance</span><b>TBD</b></div>
+        <div><span>Full paper submission</span><b>TBD</b></div>
+        <div><span>Early registration</span><b>TBD</b></div>
+        <div class="hl"><span>Conference</span><b>TBD</b></div>
+      </div>
+    </article>
+
+    <article class="panel pink" id="register">
+      <span class="tag">Registration</span>
+      <p class="welcome">Welcome<br>to Lisbon</p>
+      <p>Registration details TBD.</p>
+      <div class="row"><a class="cta ink" href="#">Register now</a></div>
+    </article>
+
+    <article class="panel ink" id="venue">
+      <span class="tag">Venue</span>
+      <h2>Venue TBD<br>Lisbon, Portugal</h2>
+      <a href="#" style="font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:14px">Open in maps</a>
+    </article>
+  </main>
+</div>
+
+<footer>
+  <img src="../assets/partners.svg" alt="UNIDCOM | IADE and FCT, Fundação para a Ciência e a Tecnologia">
+  <div style="display:flex;flex-direction:column;gap:4px"><span>Contact TBD</span><span>© 2027 UNIDCOM/IADE</span></div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, pct=document.getElementById('pct'), t=false;
+  function upd(){
+    var max=Math.max(1,root.scrollHeight-innerHeight);
+    var p=Math.min(1,Math.max(0,scrollY/max));
+    root.style.setProperty('--p',p.toFixed(4));
+    root.style.setProperty('--q',Math.min(scrollY/500,1).toFixed(3));
+    if(pct)pct.textContent=String(Math.round(p*100)).padStart(2,'0')+'%';
+    t=false;
+  }
+  addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(upd)}},{passive:true});
+  addEventListener('resize',upd);upd();
+})();
+</script>
+
+</body>
+</html>

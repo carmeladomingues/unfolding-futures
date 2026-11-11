@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Save the Date · (Un)folding Futures</title>
+<meta name="description" content="Save the date. (Un)folding Futures, Senses &amp; Sensibility 2027 international design conference. Lisbon, Portugal.">
+<style>
+@font-face{font-family:"Sligoil Micro";src:url(../assets/Micro.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Sligoil Micro";src:url(../assets/MicroMedium.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Sligoil Micro";src:url(../assets/MicroBold.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{
+  --magenta:#EC008C; --pink:#F02FA2; --pink-soft:#F9C6E4; --green:#6EC83A; --green-soft:#A6DD7E;
+  --paper:#F4FBEF; --ink:#231F20;
+  --mono:"Sligoil Micro", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --gut:clamp(20px,5vw,72px);
+  --mx:0; --my:0;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--magenta);color:var(--ink);font-family:var(--mono);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+.frame{min-height:100%;display:flex;padding:clamp(10px,1.6vw,22px);padding-left:max(clamp(10px,1.6vw,22px),env(safe-area-inset-left,0px));padding-right:max(clamp(10px,1.6vw,22px),env(safe-area-inset-right,0px));
+  background:linear-gradient(135deg,var(--magenta),#F7A8D6 55%,var(--magenta));background-size:200% 200%;animation:pinks 14s ease-in-out infinite alternate}
+@keyframes pinks{to{background-position:100% 100%}}
+
+.card{flex:1;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:calc(100svh - 2*clamp(10px,1.6vw,22px));
+  background:linear-gradient(90deg,var(--green),var(--green-soft) 30%,#EAF7E0 55%,var(--green-soft) 80%,var(--green));background-size:220% 100%;animation:greens 14s ease-in-out infinite alternate}
+@keyframes greens{to{background-position:100% 0}}
+
+.orb{position:absolute;left:68%;top:50%;width:min(860px,95vw);aspect-ratio:1;border-radius:50%;pointer-events:none;
+  background:linear-gradient(135deg,#F2FBEA 0,#B8E69A 30%,#5DBB2C 65%,#2F8A12 100%);background-size:180% 180%;filter:blur(6px);
+  transform:translate(calc(-50% + var(--mx)*-24px),calc(-50% + var(--my)*-24px));animation:orbgrad 8s ease-in-out infinite alternate}
+@keyframes orbgrad{to{background-position:100% 100%}}
+.fold{position:absolute;top:0;right:0;z-index:3;width:clamp(110px,20vw,300px);aspect-ratio:340/190;
+  background:linear-gradient(200deg,#fff 10%,var(--green-soft));clip-path:polygon(0 0,100% 0,100% 45%,30% 100%);
+  transform-origin:100% 0;animation:peel 1.2s .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes peel{from{transform:scale(.2)}to{transform:scale(1)}}
+.amp{position:absolute;z-index:1;right:clamp(4%,9vw,14%);top:50%;height:88%;width:auto;max-width:none;transform:translateY(-50%);pointer-events:none}
+
+.top{position:relative;z-index:4;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;align-items:center;
+  margin-inline:var(--gut);padding-block:20px 14px;border-bottom:2px solid var(--ink);font-weight:700;font-size:13px;letter-spacing:.06em}
+.top .up{text-transform:uppercase}
+
+main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,2.2vh,30px);padding:clamp(24px,4vh,56px) var(--gut)}
+.std{margin:0;font-weight:700;font-size:clamp(60px,min(9.5vw,17vh),170px);line-height:.88;letter-spacing:-.035em}
+.std .l{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em;white-space:nowrap}
+.std .l>span{display:inline-block;animation:rise 1s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*110ms + .1s)}
+.std .l:nth-child(1){transform:translateX(calc(var(--mx)*18px))}
+.std .l:nth-child(2){padding-left:clamp(0px,4vw,70px)}
+.std .l:nth-child(2){transform:translateX(calc(var(--mx)*-12px))}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+
+.date{align-self:flex-start;display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px;padding:12px 18px;
+  background:linear-gradient(120deg,var(--pink),#F7A8D6 50%,var(--magenta));background-size:240% 240%;animation:pinks 9s ease-in-out infinite alternate, fadeup .8s .55s cubic-bezier(.2,.8,.2,1) both;
+  font-weight:700;font-size:clamp(24px,3.4vw,52px);line-height:1;font-variant-numeric:tabular-nums}
+.date small{font-size:clamp(13px,1.2vw,16px);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+.info{display:flex;flex-direction:column;gap:6px;max-width:640px;animation:fadeup .8s .7s cubic-bezier(.2,.8,.2,1) both}
+.info b{font-weight:700;font-size:clamp(26px,3vw,46px);line-height:1}
+.info span{font-size:clamp(17px,1.7vw,24px);line-height:1.2}
+.place{letter-spacing:.04em;font-weight:700;text-transform:uppercase;animation:track 6s ease-in-out infinite alternate}
+@keyframes track{to{letter-spacing:.22em}}
+
+.ctas{display:flex;flex-wrap:wrap;gap:12px;animation:fadeup .8s .85s cubic-bezier(.2,.8,.2,1) both}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;font:700 14px/1 var(--mono);text-transform:uppercase;letter-spacing:.07em;text-decoration:none;border:2px solid var(--ink);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--ink)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{box-shadow:3px 3px 0 var(--pink)}
+.btn-line{background:transparent}
+
+.ticker{position:relative;z-index:4;background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-flex;padding-block:12px;animation:tick 26s linear infinite;font-weight:700;font-size:clamp(14px,1.4vw,19px);letter-spacing:.05em;text-transform:uppercase}
+.ticker-track span{padding-right:2.4em}
+.ticker-track b{color:var(--pink)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+footer{position:relative;z-index:4;background:var(--paper);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;padding:18px var(--gut);font-size:13px}
+footer img{width:clamp(220px,26vw,360px);max-width:100%;height:auto;display:block}
+
+@media (max-width:760px){
+  .amp{right:-40%;height:70%;top:46%}
+  .orb{left:80%;top:44%}
+  .std .l:nth-child(2){padding-left:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="card">
+    <div class="orb" aria-hidden="true"></div>
+    <div class="fold" aria-hidden="true"></div>
+    <img class="amp" src="../assets/amp.svg" alt="" aria-hidden="true">
+
+    <header class="top">
+      <span>(Un)folding Futures</span>
+      <span class="up">Lisbon*Portugal</span>
+    </header>
+
+    <main>
+      <h1 class="std" aria-label="Save the date">
+        <span class="l" aria-hidden="true"><span style="--i:0">Save</span></span>
+        <span class="l" aria-hidden="true"><span style="--i:1">the date</span></span>
+      </h1>
+      <p class="date">DD–DD Month 2027 <small>Dates TBD</small></p>
+      <div class="info">
+        <b>(Un)folding Futures</b>
+        <span>Senses &amp; Sensibility 2027<br>International design conference</span>
+        <span class="place">Venue TBD, Lisbon</span>
+      </div>
+      <div class="ctas">
+        <a class="btn btn-ink" href="#" aria-disabled="true">Add to calendar</a>
+        <a class="btn btn-line" href="../">Conference website</a>
+      </div>
+    </main>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track">
+      <span>Save the date</span><span>(Un)folding Futures</span><span>Senses <b>&amp;</b> Sensibility 2027</span><span>Lisbon<b>*</b>Portugal</span><span>Call for papers soon</span>
+      <span>Save the date</span><span>(Un)folding Futures</span><span>Senses <b>&amp;</b> Sensibility 2027</span><span>Lisbon<b>*</b>Portugal</span><span>Call for papers soon</span>
+    </div></div>
+
+    <footer>
+      <img src="../assets/partners.svg" alt="UNIDCOM | IADE and FCT, Fundação para a Ciência e a Tecnologia">
+      <span>Contact TBD</span>
+    </footer>
+  </div>
+</div>
+<script>
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!matchMedia('(pointer:fine)').matches)return;
+  var r=document.documentElement,t=false,x=0,y=0;
+  addEventListener('pointermove',function(e){x=e.clientX/innerWidth*2-1;y=e.clientY/innerHeight*2-1;
+    if(!t){t=true;requestAnimationFrame(function(){r.style.setProperty('--mx',x.toFixed(3));r.style.setProperty('--my',y.toFixed(3));t=false})}},{passive:true});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>(Un)folding Futures</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="(Un)folding Futures. Senses &amp; Sensibility 2027 international design conference. Lisbon, Portugal.">
+<style>
+@font-face{font-family:"Sligoil Micro";src:url(assets/Micro.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Sligoil Micro";src:url(assets/MicroMedium.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Sligoil Micro";src:url(assets/MicroBold.woff2) format("woff2");font-weight:700;font-display:swap}
+
+/* Layout: the conference poster turned into a page. Paper sheet on a magenta frame, title column left, ampersand right, hairline rules between blocks. */
+:root{
+  --magenta:#EC008C; --pink:#F02FA2; --green:#6EC83A; --green-soft:#A6DD7E;
+  --paper:#F4FBEF; --ink:#231F20;
+  --mono:"Sligoil Micro", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --gut:clamp(20px,5vw,80px);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--magenta);color:var(--ink);font-family:var(--mono);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+.frame{padding-block:clamp(10px,2vw,28px);padding-left:max(clamp(10px,2vw,28px),env(safe-area-inset-left,0px));padding-right:max(clamp(10px,2vw,28px),env(safe-area-inset-right,0px));
+  background:linear-gradient(135deg,var(--magenta),#F7A8D6 55%,var(--magenta));background-size:200% 200%;animation:frame 14s ease-in-out infinite alternate}
+@keyframes frame{to{background-position:100% 100%}}
+.sheet{background:var(--paper);position:relative;overflow:hidden}
+.wrap{padding-left:var(--gut);padding-right:var(--gut)}
+
+/* folded corner */
+.fold{position:absolute;top:0;right:0;z-index:5;width:clamp(110px,22vw,340px);aspect-ratio:340/190;max-width:100%;
+  background:linear-gradient(200deg,#fff 10%,var(--green-soft));clip-path:polygon(0 0,100% 0,100% 45%,30% 100%);
+  transform-origin:100% 0;transition:transform .5s cubic-bezier(.2,.8,.2,1);animation:peel 1.2s .6s cubic-bezier(.2,.8,.2,1) both}
+.sheet:hover .fold{transform:scale(1.12)}
+@keyframes peel{from{transform:scale(.2)}to{transform:scale(1)}}
+
+/* nav */
+.nav{position:relative;z-index:6;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 32px;padding-block:22px;border-bottom:1px solid var(--ink)}
+.brand{font-weight:700;font-size:15px;line-height:1.1;text-decoration:none}
+.links{display:flex;flex-wrap:wrap;gap:6px 26px;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.links a{text-decoration:none;background:linear-gradient(var(--ink),var(--ink)) 0 100%/0 1px no-repeat;transition:background-size .3s}
+.links a:hover{background-size:100% 1px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;font:600 14px/1 var(--mono);text-transform:uppercase;letter-spacing:.07em;text-decoration:none;border:2px solid var(--ink);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--ink)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{box-shadow:3px 3px 0 var(--pink)}
+.btn-pink{background:var(--pink);color:var(--ink)}
+.btn-line{background:transparent;color:var(--ink)}
+
+/* hero */
+.hero{position:relative;padding-block:clamp(40px,7vw,110px) clamp(56px,8vw,120px);background:linear-gradient(90deg,var(--green),var(--green-soft) 30%,#EAF7E0 55%,var(--green-soft) 80%,var(--green));background-size:220% 100%;animation:greens 14s ease-in-out infinite alternate;overflow:hidden}
+@keyframes greens{to{background-position:100% 0}}
+.orb{position:absolute;left:40%;top:52%;width:min(900px,90vw);aspect-ratio:1;border-radius:50%;background:linear-gradient(135deg,#F2FBEA 0,#B8E69A 30%,#5DBB2C 65%,#2F8A12 100%);background-size:180% 180%;filter:blur(6px);transform:translate(-50%,-50%);animation:breathe 9s ease-in-out infinite alternate,orbgrad 8s ease-in-out infinite alternate;pointer-events:none}
+@keyframes orbgrad{to{background-position:100% 100%}}
+@keyframes breathe{from{transform:translate(-55%,-48%) scale(.9)}to{transform:translate(-42%,-54%) scale(1.08)}}
+.amp{position:absolute;z-index:1;left:clamp(34%,40vw,46%);top:50%;height:94%;width:auto;max-width:none;transform:translateY(-50%)}
+.hero-col{position:relative;z-index:2;max-width:640px;display:flex;flex-direction:column;gap:clamp(16px,2vw,26px)}
+.rule{border-top:2px solid var(--ink)}
+h1{transform:translateX(calc(var(--q,0)*48px));transition:transform .1s linear;margin:0;padding-top:16px;font-weight:700;font-size:clamp(48px,7.4vw,116px);line-height:.98;letter-spacing:-.02em}
+.sub{transform:translateX(calc(var(--q,0)*-28px));margin:0;font-weight:400;font-size:clamp(30px,4.5vw,70px);line-height:1.02;letter-spacing:-.01em}
+.line{display:block;overflow:hidden}
+.line>span{display:block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*70ms + .1s)}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+.place{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;padding-block:12px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);font-weight:700;font-size:clamp(18px,2vw,28px)}
+.place span{letter-spacing:calc(var(--q,0)*.3em)}
+.vtext{position:absolute;z-index:2;right:var(--gut);bottom:clamp(40px,6vw,90px);max-height:78%;writing-mode:vertical-rl;transform:rotate(180deg) translateY(calc(var(--q,0)*-80px));margin:0;font-weight:500;font-size:13px;line-height:1.4;max-inline-size:none}
+@media (max-width:1000px){.vtext{display:none}}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;padding-top:6px}
+
+/* ticker */
+.ticker{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;border-block:1px solid var(--ink)}
+.ticker-track{display:inline-flex;gap:0;padding-block:14px;animation:tick 28s linear infinite;font-weight:700;font-size:clamp(16px,1.6vw,22px);letter-spacing:.04em;text-transform:uppercase}
+.ticker-track span{padding-right:2.5em}
+.ticker-track b{color:var(--pink);font-weight:700}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* sections */
+.sec{display:flex;flex-wrap:wrap;gap:28px clamp(32px,6vw,96px);padding-block:clamp(56px,8vw,120px)}
+.label{flex:1 1 200px;max-width:300px;border-top:2px solid currentColor;padding-top:14px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.body{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:28px}
+.lead{margin:0;font-size:clamp(22px,2.6vw,38px);line-height:1.28;letter-spacing:-.01em;max-width:30ch;max-width:none}
+h2{margin:0;font-weight:400;font-size:clamp(32px,4vw,60px);line-height:1.05;letter-spacing:-.015em;text-wrap:balance}
+
+.reveal{animation:up linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+@keyframes up{from{opacity:.15;transform:translateY(40px)}to{opacity:1;transform:none}}
+
+/* keynote */
+.dark{background:var(--ink);color:var(--paper)}
+.keynote{align-items:center}
+.big{margin:0;font-weight:700;font-size:clamp(56px,8vw,128px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase}
+.big .hl{color:var(--pink)}
+.portrait{width:clamp(200px,26vw,360px);max-width:100%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;color:var(--ink);background:linear-gradient(140deg,var(--magenta),var(--pink) 45%,#F7A8D6);background-size:220% 220%;animation:pinks 9s ease-in-out infinite alternate}
+.portrait .icon{width:46%;height:auto}
+.name{width:100%;max-width:520px;border-top:2px solid var(--pink);border-bottom:2px solid var(--pink);padding-block:14px;display:flex;flex-direction:column;gap:6px}
+.name h3{margin:0;font-weight:700;font-size:clamp(28px,3vw,44px);line-height:1;text-transform:uppercase;color:var(--pink)}
+.muted{opacity:.8}
+
+/* call */
+.call{background:linear-gradient(90deg,#EAF7E0,var(--green-soft))}
+.tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:2px solid var(--ink)}
+.track{padding:18px 18px 22px 0;border-bottom:1px solid var(--ink);display:flex;flex-direction:column;gap:6px;transition:padding .3s,background .3s}
+.track:hover{background:var(--pink);padding-left:14px}
+.track small{font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.track span{font-size:20px}
+
+/* dates */
+.dates{display:flex;flex-direction:column;border-top:2px solid var(--ink)}
+.date{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;padding-block:20px;border-bottom:1px solid var(--ink);font-size:clamp(18px,2vw,26px);font-variant-numeric:tabular-nums}
+.date strong{font-weight:700}
+.date.main{background:var(--pink);padding-inline:16px;margin-inline:-16px;font-weight:700;border-bottom:0}
+
+/* register */
+.register{background:linear-gradient(120deg,var(--pink),#F7A8D6 45%,var(--magenta));background-size:240% 240%;animation:pinks 10s ease-in-out infinite alternate;align-items:flex-end;justify-content:space-between}
+.register .big{color:var(--ink)}
+.welcome-big{font-size:clamp(40px,7vw,120px);white-space:nowrap}
+@keyframes pinks{to{background-position:100% 100%}}
+.register div p{margin:0;font-size:18px}
+
+.venue-txt{margin:0;font-size:clamp(28px,3.4vw,52px);line-height:1.08;letter-spacing:-.015em}
+.textlink{font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.07em}
+
+footer{border-top:2px solid var(--ink);padding-block:36px 44px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;font-size:14px}
+footer img{width:clamp(240px,32vw,440px);max-width:100%;height:auto;display:block}
+
+@media (max-width:700px){
+  .amp{left:auto;right:-30%;height:80%;opacity:.95}
+  .date.main{margin-inline:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+
+<div class="frame">
+<div class="sheet">
+  <div class="fold" aria-hidden="true"></div>
+
+  <header class="nav wrap">
+    <a class="brand" href="#top">(Un)folding<br>Futures</a>
+    <nav class="links" aria-label="Main">
+      <a href="#about">About</a><a href="#keynote">Keynote</a><a href="#call">Call for papers</a><a href="#dates">Dates</a><a href="#venue">Venue</a>
+    </nav>
+    <a class="btn btn-ink" href="#register">Register</a>
+  </header>
+
+  <section class="hero wrap" id="top">
+    <div class="orb" aria-hidden="true"></div>
+    <img class="amp" id="amp" src="assets/amp.svg" alt="" aria-hidden="true">
+    <div class="hero-col">
+      <div class="rule">
+        <h1><span class="line"><span style="--i:0">(Un)</span></span><span class="line"><span style="--i:1">folding</span></span><span class="line"><span style="--i:2">Futures</span></span></h1>
+      </div>
+      <p class="sub"><span class="line"><span style="--i:3">Senses &amp; Sen-</span></span><span class="line"><span style="--i:4">sibility 2027</span></span><span class="line"><span style="--i:5">international</span></span><span class="line"><span style="--i:6">design confe-</span></span><span class="line"><span style="--i:7">rence</span></span></p>
+      <div class="place"><span>LISBON*PORTUGAL</span><span>DATES TBD</span></div>
+      <div class="ctas"><a class="btn btn-ink" href="#call">Submit a paper</a><a class="btn btn-pink" href="#register">Register</a></div>
+    </div>
+    <p class="vtext" aria-hidden="true">We bring together researchers, educators, practitioners, artists, innovators, and doctoral students to present original research, exchange perspectives, and explore emerging challenges that shape contemporary societies.</p>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="ticker-track">
+    <span>Senses <b>&amp;</b> Sensibility 2027</span><span>Lisbon<b>*</b>Portugal</span><span>(Un)folding Futures</span><span>Call for papers</span>
+    <span>Senses <b>&amp;</b> Sensibility 2027</span><span>Lisbon<b>*</b>Portugal</span><span>(Un)folding Futures</span><span>Call for papers</span>
+  </div></div>
+
+  <section class="sec wrap" id="about">
+    <div class="label">About</div>
+    <div class="body reveal">
+      <p class="lead">We bring together researchers, educators, practitioners, artists, innovators, and doctoral students to present original research, exchange perspectives, and explore emerging challenges that shape contemporary societies. Research and technological innovation can contribute to more equitable, sustainable, inclusive, and meaningful futures.</p>
+    </div>
+  </section>
+
+  <section class="sec wrap dark keynote" id="keynote">
+    <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:24px">
+      <div class="label" style="max-width:none">Keynote speaker</div>
+      <p class="big">Key-<br>note<br><span class="hl">spea-<br>ker</span></p>
+    </div>
+    <div class="reveal" style="flex:1 1 360px;display:flex;flex-direction:column;align-items:flex-start;gap:26px">
+      <div class="portrait"><svg class="icon" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="42" r="22" fill="currentColor"/><path d="M18 108c0-23 19-40 42-40s42 17 42 40z" fill="currentColor"/></svg></div>
+      <div class="name"><h3>Speaker TBD</h3><span>Affiliation TBD</span></div>
+      <p style="margin:0" class="muted">Bio TBD</p>
+      <p style="margin:0;font-weight:500">Talk: TBD</p>
+    </div>
+  </section>
+
+  <section class="sec wrap call" id="call">
+    <div class="label">Call for papers</div>
+    <div class="body reveal">
+      <h2>Submission formats TBD.</h2>
+      <div class="tracks">
+        <div class="track"><small>Track 1</small><span>TBD</span></div>
+        <div class="track"><small>Track 2</small><span>TBD</span></div>
+        <div class="track"><small>Track 3</small><span>TBD</span></div>
+        <div class="track"><small>Track 4</small><span>TBD</span></div>
+      </div>
+      <p style="margin:0;max-width:62ch">Accepted papers will be published in the conference book of proceedings.</p>
+      <div class="ctas"><a class="btn btn-ink" href="#">Submit a paper</a><a class="btn btn-line" href="#">Author guidelines</a></div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="dates">
+    <div class="label">Important dates</div>
+    <div class="body reveal" style="gap:0">
+      <div class="dates">
+        <div class="date"><span>Abstract submission</span><strong>TBD</strong></div>
+        <div class="date"><span>Notification of acceptance</span><strong>TBD</strong></div>
+        <div class="date"><span>Full paper submission</span><strong>TBD</strong></div>
+        <div class="date"><span>Early registration</span><strong>TBD</strong></div>
+        <div class="date main"><span>Conference</span><strong>TBD</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap register" id="register">
+    <p class="big welcome-big">Welcome<br>to Lisbon</p>
+    <div style="flex:0 1 420px;display:flex;flex-direction:column;gap:18px">
+      <p>Registration details TBD.</p>
+      <a class="btn btn-ink" href="#">Register now</a>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="venue">
+    <div class="label">Venue</div>
+    <div class="body reveal" style="gap:14px">
+      <p class="venue-txt">Venue TBD<br>Lisbon, Portugal</p>
+      <a class="textlink" href="#">Open in maps</a>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <img src="assets/partners.svg" alt="UNIDCOM | IADE and FCT, Fundação para a Ciência e a Tecnologia">
+    <div style="display:flex;flex-direction:column;gap:4px"><span>Contact TBD</span><span>© 2027 UNIDCOM/IADE</span></div>
+  </footer>
+</div>
+</div>
+
+<script>
+(function(){
+  var hero=document.getElementById('top');
+  if(!hero||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var t=false;
+  function upd(){hero.style.setProperty('--q',Math.min(scrollY/700,1).toFixed(3));t=false}
+  addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(upd)}},{passive:true});upd();
+})();
+</script>
+
+</body>
+</html>
