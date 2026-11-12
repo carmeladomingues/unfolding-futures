@@ -55,13 +55,12 @@ main{position:relative;z-index:2;isolation:isolate;flex:1;min-height:0;display:f
   transform:translate(calc(-50% + var(--mx)*-24px),calc(-50% + var(--my)*-24px));transition:transform .25s ease-out}
 .amp{position:absolute;right:clamp(4%,10vw,14%);top:50%;height:94%;width:auto;max-width:none;transform:translateY(-50%)}
 
-.std{margin:0;font-weight:700;font-size:clamp(22px,min(3.6vw,6vh),72px);line-height:1;letter-spacing:-.01em}
-.title{margin:0;font-weight:700;font-size:clamp(46px,min(9.6vw,15vh),210px);line-height:.9;letter-spacing:-.03em}
+.std{align-self:flex-start;margin:0;padding:.18em .32em .2em;background:linear-gradient(120deg,var(--pink),#F7A8D6 50%,var(--magenta));font-weight:700;font-size:clamp(24px,min(4vw,6.6vh),84px);line-height:1;letter-spacing:-.015em}
+.title{margin:0;font-weight:700;font-size:clamp(40px,min(7.4vw,11.6vh),160px);line-height:.9;letter-spacing:-.03em}
 .title span{display:block;white-space:nowrap}
 .punch{margin:0;max-width:40ch;font-size:clamp(14px,min(1.7vw,2.7vh),26px);line-height:1.3}
 .facts{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(10px,1.6vh,18px) clamp(18px,2.4vw,36px)}
-.date{margin:0;padding:.22em .34em;background:linear-gradient(120deg,var(--pink),#F7A8D6 50%,var(--magenta));
-  font-weight:700;font-size:clamp(19px,min(2.8vw,4.6vh),48px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.date{margin:0;font-weight:700;font-size:clamp(19px,min(2.6vw,4.3vh),44px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
 .place{margin:0;font-weight:700;font-size:clamp(13px,min(1.3vw,2.2vh),20px);line-height:1.3;letter-spacing:.06em;text-transform:uppercase}
 
 .btn{align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;gap:.55em;text-decoration:none;
@@ -83,8 +82,8 @@ footer{position:relative;z-index:4;background:var(--ink);color:var(--paper);disp
   .top .conf{text-align:left}
   .orb{left:82%;width:min(110vw,80vh)}
   .amp{right:-30%;height:90%}
-  .std{font-size:clamp(20px,min(6.4vw,3.6vh),44px)}
-  .title{font-size:clamp(36px,min(12.6vw,8.6vh),120px)}
+  .std{font-size:clamp(22px,min(7.6vw,4.2vh),52px)}
+  .title{font-size:clamp(32px,min(10.6vw,7vh),100px)}
   .title span{white-space:normal}
   .punch{font-size:clamp(13px,min(4.4vw,2.3vh),22px)}
   .date{font-size:clamp(18px,min(6.2vw,3.3vh),40px)}
