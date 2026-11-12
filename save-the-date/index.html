@@ -79,21 +79,30 @@ footer{position:relative;z-index:4;background:var(--ink);color:var(--paper);disp
 
 /* portrait tablets and phones */
 @media (max-width:760px), (max-width:1100px) and (orientation:portrait){
-  .top .conf{text-align:left}
-  .orb{left:82%;width:min(110vw,80vh)}
-  .amp{right:-30%;height:90%}
-  .std{font-size:clamp(22px,min(7.6vw,4.2vh),52px)}
-  .title{font-size:clamp(32px,min(10.6vw,7vh),100px)}
-  .title span{white-space:normal}
-  .punch{font-size:clamp(13px,min(4.4vw,2.3vh),22px)}
-  .date{font-size:clamp(18px,min(6.2vw,3.3vh),40px)}
-  .place{font-size:clamp(12px,min(3.8vw,2vh),18px)}
-  .btn{font-size:clamp(14px,min(4.4vw,2.3vh),19px);min-height:clamp(42px,6vh,58px)}
-  .partners{gap:10px 16px}
-  .partners img,.partners .eu img,.partners .prr img,.partners .rp img{height:clamp(17px,2.6vh,26px)}
+  /* header: two quiet columns */
+  .top{flex-wrap:nowrap;align-items:flex-start;gap:16px;font-size:clamp(11px,min(3.2vw,1.7vh),15px);line-height:1.3;letter-spacing:.03em}
+  .top .org{flex:1;min-width:0}
+  .top .conf{flex:none;text-align:right}
+  /* ampersand: whole, top right, behind the text */
+  .orb{left:72%;top:36%;width:min(118vw,70vh)}
+  .amp{right:2%;top:4%;height:min(60%,92vw);transform:none}
+  /* text sits in the lower part, over the logo */
+  main{justify-content:flex-end;gap:clamp(10px,1.8vh,20px);padding-block:clamp(14px,2.4vh,28px) clamp(16px,2.8vh,32px)}
+  .std{font-size:clamp(22px,min(7.4vw,4vh),52px)}
+  .title{font-size:clamp(34px,min(11.4vw,6.6vh),100px);line-height:.92}
+  .title span{white-space:nowrap}
+  .punch{max-width:30ch;font-size:clamp(14px,min(4.3vw,2.2vh),22px)}
+  .date{font-size:clamp(19px,min(6.2vw,3.2vh),40px)}
+  .btn{align-self:stretch;font-size:clamp(14px,min(4.2vw,2.2vh),19px);min-height:clamp(46px,6.6vh,60px)}
+  /* footer: tidy logo grid */
+  footer{display:grid;gap:clamp(10px,1.6vh,16px);padding-block:clamp(12px,2vh,20px)}
+  .partners{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;align-items:center;gap:clamp(10px,1.6vh,16px) 12px}
+  .partners img,.partners .prr img,.partners .rp img{height:clamp(16px,min(5vw,2.6vh),28px);max-width:100%}
+  .partners .eu img{height:clamp(17px,min(5.3vw,2.8vh),30px)}
 }
 @media (min-width:761px) and (max-width:1100px) and (orientation:portrait){
-  .amp{right:-8%;height:86%}
+  .amp{right:6%;height:min(58%,70vw)}
+  .partners{grid-template-columns:repeat(6,auto)}
 }
 @media (max-height:700px) and (max-width:1100px){
   main{gap:8px;padding-block:8px 14px}
