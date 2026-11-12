@@ -33,97 +33,73 @@ a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 
 /* header */
 .top{position:relative;z-index:4;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px 24px;
-  margin-inline:var(--gut);padding-block:clamp(10px,2.2vh,20px) clamp(8px,1.5vh,14px);border-bottom:2px solid var(--ink);
+  margin-inline:var(--gut);padding-block:clamp(10px,2.2vh,20px) clamp(8px,1.5vh,14px);
   font-weight:700;font-size:clamp(12px,min(1.5vw,2.3vh),21px);letter-spacing:.05em;line-height:1.35}
 .top .org span{font-weight:500}
 .top .conf{text-align:right;white-space:nowrap}
 .top .yr{margin-left:.32em}
 
-/* middle: title + ampersand, then the facts row */
-main{position:relative;z-index:2;flex:1;min-height:0;display:grid;
-  grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-rows:minmax(0,1fr) auto;
-  column-gap:clamp(16px,2.4vw,40px);padding:0 var(--gut)}
-.stage{grid-column:2;grid-row:1;position:relative;min-height:0;pointer-events:none}
-.orb{position:absolute;left:50%;top:50%;width:min(820px,48vw,92vh);aspect-ratio:1;border-radius:50%;
+/* ticker under the header */
+.ticker{position:relative;z-index:4;background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-flex;padding-block:clamp(6px,1.3vh,12px);animation:tick 26s linear infinite;font-weight:700;font-size:clamp(12px,min(1.4vw,2.1vh),19px);letter-spacing:.05em;text-transform:uppercase}
+.ticker-track span{padding-right:2.4em}
+.ticker-track b{color:var(--pink)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* middle: one text column over the ampersand */
+main{position:relative;z-index:2;isolation:isolate;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;
+  gap:clamp(10px,2.2vh,28px);padding:clamp(12px,2.6vh,36px) var(--gut) clamp(18px,4vh,52px)}
+.stage{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.orb{position:absolute;left:74%;top:50%;width:min(860px,60vw,96vh);aspect-ratio:1;border-radius:50%;
   background:linear-gradient(135deg,#F2FBEA 0,#B8E69A 30%,#5DBB2C 65%,#2F8A12 100%);filter:blur(6px);
   transform:translate(calc(-50% + var(--mx)*-24px),calc(-50% + var(--my)*-24px));transition:transform .25s ease-out}
-.amp{position:absolute;left:50%;top:50%;height:88%;width:auto;max-width:none;transform:translate(-50%,-50%)}
+.amp{position:absolute;right:clamp(4%,10vw,14%);top:50%;height:94%;width:auto;max-width:none;transform:translateY(-50%)}
 
-.std{grid-column:1;grid-row:1;align-self:center;position:relative;z-index:1;margin:0;font-weight:700;
-  font-size:clamp(56px,min(10.4vw,19vh),230px);line-height:.88;letter-spacing:-.035em}
-.std .l{display:block;white-space:nowrap}
-.std .l:nth-child(2){padding-left:.42em}
-
-.facts{grid-column:1/-1;grid-row:2;position:relative;z-index:1;display:grid;
-  grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:clamp(12px,1.6vh,20px) clamp(20px,3vw,56px);
-  border-top:2px solid var(--ink);padding-block:clamp(12px,2.4vh,28px) clamp(14px,3vh,34px)}
+.std{margin:0;font-weight:700;font-size:clamp(22px,min(3.6vw,6vh),72px);line-height:1;letter-spacing:-.01em}
+.title{margin:0;font-weight:700;font-size:clamp(46px,min(9.6vw,15vh),210px);line-height:.9;letter-spacing:-.03em}
+.title span{display:block;white-space:nowrap}
+.punch{margin:0;max-width:40ch;font-size:clamp(14px,min(1.7vw,2.7vh),26px);line-height:1.3}
+.facts{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(10px,1.6vh,18px) clamp(18px,2.4vw,36px)}
 .date{margin:0;padding:.22em .34em;background:linear-gradient(120deg,var(--pink),#F7A8D6 50%,var(--magenta));
-  font-weight:700;font-size:clamp(20px,min(2.6vw,4.4vh),46px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
-.info{display:flex;flex-direction:column;gap:clamp(4px,.8vh,8px);min-width:0}
-.info b{font-weight:700;font-size:clamp(20px,min(2.3vw,3.9vh),38px);line-height:1.05}
-.punch{margin:0;max-width:44ch;font-size:clamp(13px,min(1.3vw,2.2vh),20px);line-height:1.3}
-.where{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(10px,1.6vh,18px)}
-.place{margin:0;font-weight:700;font-size:clamp(13px,min(1.2vw,2.1vh),18px);line-height:1.3;letter-spacing:.06em;text-transform:uppercase}
-.place span{display:block}
+  font-weight:700;font-size:clamp(19px,min(2.8vw,4.6vh),48px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.place{margin:0;font-weight:700;font-size:clamp(13px,min(1.3vw,2.2vh),20px);line-height:1.3;letter-spacing:.06em;text-transform:uppercase}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;text-decoration:none;
+.btn{align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;gap:.55em;text-decoration:none;
   min-height:clamp(42px,min(4.2vw,6.4vh),60px);padding:0 clamp(18px,1.8vw,28px);
   font:700 clamp(14px,min(1.3vw,2.2vh),19px)/1 var(--mono);text-transform:uppercase;letter-spacing:.05em;
   background:var(--ink);color:var(--paper);border:2px solid var(--ink);transition:transform .2s,box-shadow .2s}
 .btn svg{width:1em;height:1em;flex:none}
 .btn:hover{transform:translate(-3px,-3px);box-shadow:4px 4px 0 var(--pink)}
 
-/* ticker + footer */
-.ticker{position:relative;z-index:4;background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap}
-.ticker-track{display:inline-flex;padding-block:clamp(6px,1.3vh,12px);animation:tick 26s linear infinite;font-weight:700;font-size:clamp(12px,min(1.4vw,2.1vh),19px);letter-spacing:.05em;text-transform:uppercase}
-.ticker-track span{padding-right:2.4em}
-.ticker-track b{color:var(--pink)}
-@keyframes tick{to{transform:translateX(-50%)}}
-footer{position:relative;z-index:4;background:var(--ink);color:var(--paper);border-top:1px solid rgba(244,251,239,.18);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:clamp(8px,1.6vh,18px) 32px;padding:clamp(10px,2.2vh,22px) var(--gut);font-size:13px}
+/* footer */
+footer{position:relative;z-index:4;background:var(--ink);color:var(--paper);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:clamp(8px,1.6vh,18px) 32px;padding:clamp(10px,2.2vh,22px) var(--gut);font-size:13px}
 .partners{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(8px,1.6vh,18px) clamp(16px,2.3vw,40px);margin:0;padding:0;list-style:none}
 .partners img{display:block;height:clamp(18px,min(2.6vw,4vh),38px);width:auto}
 .partners .eu img{height:clamp(19px,min(2.7vw,4.2vh),40px)}
 .partners .prr img,.partners .rp img{height:clamp(19px,min(2.8vw,4.3vh),40px)}
 
-/* tablet: facts in two rows */
-@media (max-width:1100px) and (min-width:761px) and (orientation:landscape){
-  .facts{grid-template-columns:auto minmax(0,1fr)}
-  .where{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between}
-  .place span{display:inline}
-}
-
-/* phone: single column, ampersand behind on the right */
+/* portrait tablets and phones */
 @media (max-width:760px), (max-width:1100px) and (orientation:portrait){
   .top .conf{text-align:left}
-  main{display:flex;flex-direction:column;justify-content:center;gap:clamp(10px,2.2vh,22px);padding-block:clamp(8px,1.6vh,20px)}
-  .stage{position:absolute;inset:0;z-index:-1}
-  .orb{left:85%;width:min(95vw,90vh)}
-  .amp{left:auto;right:-34%;transform:translateY(-50%);height:92%}
-  .std{align-self:auto;font-size:clamp(40px,min(15vw,7.2vh),90px)}
-  .std .l:nth-child(2){padding-left:0}
-  .facts{display:flex;flex-direction:column;gap:clamp(8px,1.6vh,16px);border-top:0;padding:0}
-  .date{align-self:flex-start;font-size:clamp(18px,min(6.4vw,3.3vh),34px)}
-  .info b{font-size:clamp(20px,min(6.8vw,3.4vh),34px)}
-  .punch,.place{font-size:clamp(12px,min(4.3vw,2.15vh),19px)}
-  .place span{display:inline}
-  .btn{font-size:clamp(14px,min(4.4vw,2.3vh),18px);min-height:clamp(42px,6vh,56px)}
+  .orb{left:82%;width:min(110vw,80vh)}
+  .amp{right:-30%;height:90%}
+  .std{font-size:clamp(20px,min(6.4vw,3.6vh),44px)}
+  .title{font-size:clamp(36px,min(12.6vw,8.6vh),120px)}
+  .title span{white-space:normal}
+  .punch{font-size:clamp(13px,min(4.4vw,2.3vh),22px)}
+  .date{font-size:clamp(18px,min(6.2vw,3.3vh),40px)}
+  .place{font-size:clamp(12px,min(3.8vw,2vh),18px)}
+  .btn{font-size:clamp(14px,min(4.4vw,2.3vh),19px);min-height:clamp(42px,6vh,58px)}
   .partners{gap:10px 16px}
-  .partners img,.partners .eu img,.partners .prr img,.partners .rp img{height:clamp(17px,2.6vh,24px)}
-}
-@media (max-width:760px) and (max-height:700px), (max-width:1100px) and (orientation:portrait) and (max-height:700px){
-  main{gap:7px}
-  .facts{gap:6px}
-  .top{padding-block:8px 6px}
-  footer{padding-block:8px}
+  .partners img,.partners .eu img,.partners .prr img,.partners .rp img{height:clamp(17px,2.6vh,26px)}
 }
 @media (min-width:761px) and (max-width:1100px) and (orientation:portrait){
-  .amp{right:-10%;height:86%}
-  .std{font-size:clamp(60px,12vw,130px)}
-  .date{font-size:clamp(24px,4.4vw,40px)}
-  .info b{font-size:clamp(24px,4.2vw,38px)}
-  .punch,.place{font-size:clamp(15px,2.4vw,20px)}
-  .btn{font-size:clamp(15px,2.2vw,19px);min-height:56px}
-  .info{max-width:62%}
+  .amp{right:-8%;height:86%}
+}
+@media (max-height:700px) and (max-width:1100px){
+  main{gap:8px;padding-block:8px 14px}
+  .top{padding-block:8px 6px}
+  footer{padding-block:8px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -140,32 +116,25 @@ footer{position:relative;z-index:4;background:var(--ink);color:var(--paper);bord
       <span class="conf">Senses &amp;<br>Sensibility<span class="yr">'27</span></span>
     </header>
 
+    <div class="ticker" aria-hidden="true"><div class="ticker-track">
+      <span>Save the date</span><span>(Un)folding Futures</span><span>Senses <b>&amp;</b> Sensibility 2027</span><span>Lisbon<b>*</b>Portugal</span><span>Call for papers soon</span>
+      <span>Save the date</span><span>(Un)folding Futures</span><span>Senses <b>&amp;</b> Sensibility 2027</span><span>Lisbon<b>*</b>Portugal</span><span>Call for papers soon</span>
+    </div></div>
+
     <main>
       <div class="stage" aria-hidden="true">
         <div class="orb"></div>
         <img class="amp" src="../assets/amp.svg" alt="">
       </div>
-      <h1 class="std" aria-label="Save the date">
-        <span class="l" aria-hidden="true">Save</span>
-        <span class="l" aria-hidden="true">the date</span>
-      </h1>
+      <p class="std">Save the date</p>
+      <h1 class="title"><span>(Un)folding</span> <span>Futures</span></h1>
+      <p class="punch">Futures are not destinations. They are relational, and they are ours to shape.</p>
       <div class="facts">
         <p class="date">11–14 October 2027</p>
-        <div class="info">
-          <b>(Un)folding Futures</b>
-          <p class="punch">Futures are not destinations. They are relational, and they are ours to shape.</p>
-        </div>
-        <div class="where">
-          <p class="place"><span>Oriente Green Campus,</span> <span>Lisbon, Portugal</span></p>
-          <a class="btn" href="senses-sensibility-2027.ics" download="senses-sensibility-2027.ics"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="2.5" y="4.5" width="19" height="17"/><path d="M2.5 9.5h19M7.5 2v5M16.5 2v5M12 12.5v6M9 15.5h6"/></svg>Add to calendar</a>
-        </div>
+        <p class="place">Oriente Green Campus, Lisbon, Portugal</p>
       </div>
+      <a class="btn" href="senses-sensibility-2027.ics" download="senses-sensibility-2027.ics"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="2.5" y="4.5" width="19" height="17"/><path d="M2.5 9.5h19M7.5 2v5M16.5 2v5M12 12.5v6M9 15.5h6"/></svg>Add to calendar</a>
     </main>
-
-    <div class="ticker" aria-hidden="true"><div class="ticker-track">
-      <span>Save the date</span><span>(Un)folding Futures</span><span>Senses <b>&amp;</b> Sensibility 2027</span><span>Lisbon<b>*</b>Portugal</span><span>Call for papers soon</span>
-      <span>Save the date</span><span>(Un)folding Futures</span><span>Senses <b>&amp;</b> Sensibility 2027</span><span>Lisbon<b>*</b>Portugal</span><span>Call for papers soon</span>
-    </div></div>
 
     <footer>
       <ul class="partners" aria-label="Partners">
