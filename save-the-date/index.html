@@ -42,9 +42,10 @@ a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 @keyframes peel{from{transform:scale(.2)}to{transform:scale(1)}}
 .amp{position:absolute;z-index:1;right:clamp(4%,9vw,14%);top:50%;height:88%;width:auto;max-width:none;transform:translateY(-50%);pointer-events:none}
 
-.top{position:relative;z-index:4;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;align-items:center;
+.top{position:relative;z-index:4;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;align-items:flex-start;
   margin-inline:var(--gut);padding-block:20px 14px;border-bottom:2px solid var(--ink);font-weight:700;font-size:clamp(14px,1.35vw,19px);letter-spacing:.05em}
-.top .org{line-height:1.35}
+.top .org,.top .conf{line-height:1.35}
+.top .yr{margin-left:.32em}
 .top .org span{font-weight:500}
 .info .punch{max-width:34ch;font-size:clamp(17px,1.7vw,24px);line-height:1.25}
 
@@ -107,7 +108,7 @@ footer{position:relative;z-index:4;background:var(--ink);color:var(--paper);bord
 
     <header class="top">
       <span class="org">UNIDCOM/IADE<br><span>14th Biennial International Conference in Design</span></span>
-      <span>Senses &amp; Sensibility '27</span>
+      <span class="conf">Senses &amp; Sensibility<span class="yr">'27</span></span>
     </header>
 
     <main>
