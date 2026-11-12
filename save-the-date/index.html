@@ -82,8 +82,11 @@ main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justi
 .ticker-track b{color:var(--pink)}
 @keyframes tick{to{transform:translateX(-50%)}}
 
-footer{position:relative;z-index:4;background:var(--paper);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;padding:18px var(--gut);font-size:13px}
-footer img{width:clamp(220px,26vw,360px);max-width:100%;height:auto;display:block}
+footer{position:relative;z-index:4;background:var(--ink);color:var(--paper);border-top:1px solid rgba(244,251,239,.18);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px;padding:22px var(--gut);font-size:13px}
+.partners{display:flex;flex-wrap:wrap;align-items:center;gap:18px clamp(22px,2.6vw,44px);margin:0;padding:0;list-style:none}
+.partners img{display:block;height:clamp(26px,2.6vw,38px);width:auto}
+.partners .eu img{height:clamp(30px,3vw,44px)}
+.partners .prr img,.partners .rp img{height:clamp(28px,2.8vw,40px)}
 
 @media (max-width:760px){
   .amp{right:-40%;height:70%;top:46%}
@@ -130,7 +133,14 @@ footer img{width:clamp(220px,26vw,360px);max-width:100%;height:auto;display:bloc
     </div></div>
 
     <footer>
-      <img src="../assets/partners.svg" alt="UNIDCOM | IADE and FCT, Fundação para a Ciência e a Tecnologia">
+      <ul class="partners" aria-label="Partners">
+        <li><img src="../assets/logos/iade.svg" alt="IADE Creating Creators"></li>
+        <li><img src="../assets/logos/fct.svg" alt="FCT, Fundação para a Ciência e a Tecnologia"></li>
+        <li><img src="../assets/logos/unidcom.svg" alt="UNIDCOM | IADE"></li>
+        <li class="prr"><img src="../assets/logos/prr.svg" alt="PRR, Plano de Recuperação e Resiliência"></li>
+        <li class="rp"><img src="../assets/logos/republica.svg" alt="República Portuguesa"></li>
+        <li class="eu"><img src="../assets/logos/eu.svg" alt="Financiado pela União Europeia, NextGenerationEU"></li>
+      </ul>
       <span>Contact TBD</span>
     </footer>
   </div>
