@@ -43,7 +43,7 @@ a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 .amp{position:absolute;z-index:1;right:clamp(4%,9vw,14%);top:50%;height:88%;width:auto;max-width:none;transform:translateY(-50%);pointer-events:none}
 
 .top{position:relative;z-index:4;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;align-items:center;
-  margin-inline:var(--gut);padding-block:20px 14px;border-bottom:2px solid var(--ink);font-weight:700;font-size:13px;letter-spacing:.06em}
+  margin-inline:var(--gut);padding-block:20px 14px;border-bottom:2px solid var(--ink);font-weight:700;font-size:clamp(14px,1.35vw,19px);letter-spacing:.05em}
 .top .org{line-height:1.35}
 .top .org span{font-weight:500}
 .info .punch{max-width:34ch;font-size:clamp(17px,1.7vw,24px);line-height:1.25}
@@ -63,8 +63,8 @@ main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justi
 .date small{font-size:clamp(13px,1.2vw,16px);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
 @keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-.info{display:flex;flex-direction:column;gap:6px;max-width:640px;animation:fadeup .8s .7s cubic-bezier(.2,.8,.2,1) both}
-.info b{font-weight:700;font-size:clamp(26px,3vw,46px);line-height:1}
+.info{display:flex;flex-direction:column;gap:8px;max-width:640px;animation:fadeup .8s .7s cubic-bezier(.2,.8,.2,1) both}
+.info b{margin-top:6px;font-weight:700;font-size:clamp(26px,3vw,46px);line-height:1}
 .info span{font-size:clamp(17px,1.7vw,24px);line-height:1.2}
 .place{letter-spacing:.04em;font-weight:700;text-transform:uppercase;animation:track 6s ease-in-out infinite alternate}
 @keyframes track{to{letter-spacing:.22em}}
@@ -117,9 +117,9 @@ footer{position:relative;z-index:4;background:var(--ink);color:var(--paper);bord
       </h1>
       <p class="date">11–14 October 2027</p>
       <div class="info">
+        <span class="place">Oriente Green Campus, Lisbon, Portugal</span>
         <b>(Un)folding Futures</b>
         <span class="punch">Futures are not destinations. They are relational, and they are ours to shape.</span>
-        <span class="place">Oriente Green Campus, Lisbon, Portugal</span>
       </div>
       <div class="ctas">
         <a class="btn btn-ink" href="senses-sensibility-2027.ics" download="senses-sensibility-2027.ics">Add to calendar</a>
@@ -141,7 +141,7 @@ footer{position:relative;z-index:4;background:var(--ink);color:var(--paper);bord
         <li class="rp"><img src="../assets/logos/republica.svg" alt="República Portuguesa"></li>
         <li class="eu"><img src="../assets/logos/eu.svg" alt="Financiado pela União Europeia, NextGenerationEU"></li>
       </ul>
-      <span>Contact TBD</span>
+      <span>contact@</span>
     </footer>
   </div>
 </div>
