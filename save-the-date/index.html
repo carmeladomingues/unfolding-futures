@@ -85,19 +85,21 @@ footer{position:relative;z-index:4;background:var(--ink);color:var(--paper);disp
   .top .org{flex:1;min-width:0}
   .top .conf{flex:none;text-align:right}
   /* ampersand: whole, top right, behind the text */
-  .orb{left:72%;top:36%;width:min(118vw,70vh)}
-  .amp{right:2%;top:4%;height:min(60%,92vw);transform:none}
+  .orb{left:74%;top:48%;width:min(120vw,72vh)}
+  .amp{right:-6%;top:50%;height:min(86%,118vw);transform:translateY(-50%)}
   /* text sits in the lower part, over the logo */
-  main{justify-content:flex-end;gap:clamp(14px,2.6vh,30px);padding-block:clamp(14px,2.4vh,28px) clamp(16px,2.8vh,32px)}
+  main{justify-content:space-evenly;gap:clamp(12px,2vh,22px);padding-block:clamp(14px,2.4vh,28px) clamp(16px,2.8vh,32px)}
   .std{font-size:clamp(22px,min(7.4vw,4vh),52px)}
-  .title{font-size:clamp(34px,min(11.4vw,6.6vh),100px);line-height:.95;margin-block:clamp(2px,.6vh,8px)}
+  .title{font-size:clamp(34px,min(12vw,7vh),100px);line-height:.95;margin-block:clamp(2px,.6vh,8px)}
   .title span{white-space:nowrap}
-  .punch{max-width:30ch;font-size:clamp(14px,min(4.3vw,2.2vh),22px)}
-  .date{font-size:clamp(19px,min(6.2vw,3.2vh),40px)}
+  .punch{max-width:30ch;font-size:clamp(14px,min(4.5vw,2.3vh),22px)}
+  .date{font-size:clamp(19px,min(6.4vw,3.4vh),40px)}
   .btn{align-self:stretch;font-size:clamp(14px,min(4.2vw,2.2vh),19px);min-height:clamp(46px,6.6vh,60px)}
   /* footer: tidy logo grid */
   footer{display:grid;justify-items:center;text-align:center;gap:clamp(10px,1.6vh,16px);padding-block:clamp(12px,2vh,20px)}
-  .partners{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;justify-items:center;align-items:center;gap:clamp(10px,1.6vh,16px) 12px}
+  .partners{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(10px,1.6vh,16px) clamp(12px,4vw,20px)}
+  .partners::after{content:"";flex-basis:100%;height:0;order:1}
+  .partners li:nth-child(n+4){order:2}
   .partners img,.partners .prr img,.partners .rp img{height:clamp(16px,min(5.6vw,2.8vh),28px);max-width:100%}
   .partners .eu img{height:clamp(17px,min(5.9vw,3vh),30px)}
 }
